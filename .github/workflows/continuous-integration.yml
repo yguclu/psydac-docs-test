@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest ]
-        python-version: [ '3.7', '3.8', '3.9', '3.10' ]
+        python-version: [ 3.7, 3.8, 3.9, '3.10' ]
         isMerge:
           - ${{ github.event_name == 'push' && github.ref == 'refs/heads/devel' }}
         exclude:
@@ -29,15 +29,7 @@ jobs:
 
     name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
 
-    steps:
-      - name: Check job configuration
-        run: |
-          echo ${{ matrix.os }}
-          echo ${{ matrix.python-version }}
-          echo ${{ github.event_name }}
-          echo ${{ github.ref }}
-          echo ${{ matrix.isMerge }}
-      
+    steps:      
       - uses: actions/checkout@v3
 
       - name: Set up Python ${{ matrix.python-version }}
